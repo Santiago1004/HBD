@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>¡Feliz Cumpleaños!</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #e3f2fd;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .circle-button {
+      width: 650px; /* 50% del tamaño anterior (1300px) */
+      height: 650px;
+      border-radius: 50%;
+      background-color: #1e88e5; /* azul */
+      color: white;
+      font-size: 3em;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease-in-out;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .circle-button:active {
+      transform: scale(0.95);
+    }
+
+    #moccha {
+      display: none;
+      margin-top: 30px;
+      animation: fadeIn 1s ease-in-out forwards;
+      width: 100%;
+      max-width: 1350px; /* 75% del anterior 1800px */
+    }
+
+    #loveText {
+      font-size: 6em; /* 75% del tamaño anterior */
+      color: #1565c0;
+      margin-top: 35px;
+      display: none;
+      font-weight: bold;
+    }
+
+    .gif-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @media (max-width: 700px) {
+      .circle-button {
+        width: 90vw;
+        height: 90vw;
+        font-size: 2em;
+      }
+
+      #loveText {
+        font-size: 4em;
+      }
+
+      #moccha {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="circle-button" onclick="showMoccha()">Presióname 🍬🎉</button>
+
+  <div id="moccha">
+    <div class="gif-container">
+      <div class="tenor-gif-embed" data-postid="6825189808571506694" data-share-method="host" data-aspect-ratio="1" data-width="100%">
+        <a href="https://tenor.com/view/milk-and-mocha-milk-mocha-milk-mocha-bear-milk-and-mocha-bear-happy-milk-day-gif-6825189808571506694">Milk And Mocha Milk Mocha GIF</a> 
+        from <a href="https://tenor.com/search/milk+and+mocha-gifs">Milk And Mocha GIFs</a>
+      </div>
+    </div>
+    <div id="loveText">¡Feliz cumpleaños Tita! 🎂🎈</div>
+  </div>
+
+  <!-- TENOR -->
+  <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+
+  <!-- CONFETTI -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <script>
+    function showMoccha() {
+      // Ocultar botón
+      document.querySelector(".circle-button").style.display = "none";
+      
+      // Mostrar imagen y texto
+      document.getElementById("moccha").style.display = "block";
+      document.getElementById("loveText").style.display = "block";
+
+      // Lanzar confeti en bucle
+      const duration = 3000; // 3 segundos
+      const end = Date.now() + duration;
+
+      (function frame() {
+        confetti({
+          particleCount: 5,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 },
+          colors: ['#bb0000', '#ffffff']
+        });
+        confetti({
+          particleCount: 5,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 },
+          colors: ['#0000ff', '#ff4081']
+        });
+
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      })();
+    }
+  </script>
+
+</body>
+</html>
